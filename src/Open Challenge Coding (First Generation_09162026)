@@ -1,0 +1,140 @@
+folder "prjs"\clever
+Sensor.SetMode(1,0)
+Sensor.SetMode(2,0)
+Sensor.SetMode(3,0)
+
+Sub getPixyLargest
+  While 1=1
+    values = Sensor.ReadI2CRegisters(4, 1, 80, 2)
+    @sig = values[0]
+  EndWhile
+EndSub
+
+Sub Steering
+  Motor.StartPower("A",50)
+  Program.Delay(300)
+  While Motor.GetSpeed("A")<>0
+    'wait
+  EndWhile
+  
+  Motor.ResetCount("A")
+  Motor.StartPower("D",speed)
+  
+  While 1=1
+    @l=Sensor.ReadRawValue(1,0)
+    @r=Sensor.ReadRawValue(2,0)
+    relativeHeading=target-Sensor.ReadRawValue(3,0)
+    correction=-45+turn-Motor.GetCount("A")
+    Motor.StartPower("A",correction)
+  EndWhile
+EndSub
+
+Sub Correction
+  While 1=1
+    If @l<50 Or @r<50 Then
+      If @l>@r Then
+        turn=35
+      Else
+        turn=-35
+      EndIf
+    Else
+      turn=relativeHeading*2.0
+    EndIf
+  EndWhile
+EndSub
+
+Function waitDegrees(in number degrees)
+  dDegrees=Motor.GetCount("D")
+  While Math.Abs(Motor.GetCount("D")-dDegrees)<degrees
+    'wait
+  EndWhile
+EndFunction
+
+'Create Variable
+speed=100
+target=0
+turn=0
+count=0
+CW=0
+turnDegrees=90
+@sig=0
+@l=0
+@r=0
+
+'Run Task
+Thread.Run=getPixyLargest
+Thread.Run=Steering
+Thread.Run=Correction
+
+'Main Program
+Motor.ResetCount("D")
+
+While count<12
+  
+  If count=0 Then
+    While Motor.GetCount("D")<300 Or @sig<>1 And @sig<>2
+      LCD.Clear()
+      LCD.Text(1,0,0,2,@sig)
+    EndWhile
+    
+    CW=@sig
+    
+  Else
+    waitDegrees(1000)
+  EndIf
+  
+  'Wait Ultrasonic
+  While @l<2000 And @r<2000
+    LCD.Clear()
+    LCD.Text(1,0,0,2,@l)
+    LCD.Text(1,0,0,2,@r)
+  EndWhile
+  
+  Speaker.Tone(100,440,50)
+  
+  If CW=1 Then
+    turnDegrees=91
+  Else
+    turnDegrees=91
+  EndIf
+  
+  'changing the turning degrees for each turn
+  If CW=1 Then
+    target=target-turnDegrees
+  Else
+    target=target+turnDegrees
+  EndIf
+  
+  count=count+1
+  
+EndWhile
+
+'last turn
+If CW=1 Then
+  target=-1080
+Else
+  target=1080
+EndIf
+
+Speaker.Tone(100,440,50)
+
+If CW=1 Then
+  CW=2
+Else
+  CW=1
+EndIf
+
+While @sig<>CW
+  'wait
+EndWhile
+
+Speaker.Tone(100,400,50)
+
+waitDegrees(700)
+
+LCD.Clear()
+LCD.Text(1,0,0,2,EV3.Time*0.001)
+
+While 1=1
+  Motor.Stop("D","True")
+EndWhile

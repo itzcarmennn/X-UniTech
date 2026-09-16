@@ -1,0 +1,225 @@
+folder "prjs"\Clever
+Sensor.SetMode(3,0)
+
+Function getRGB(in number port, in number xin, in number yin,
+  out number w)
+  writeBuffer[0]=94
+  writeBuffer[1]=Math.Remainder((xin*0.80952320952)+128,256)-128
+  writeBuffer[2]=Math.Remainder((yin*1.23188405797)+128,256)-128
+  writeBuffer[3]=0
+  values=Sensor.CommunicateI2C(port,1,4,3,writeBuffer)
+  r=values[0]
+  g=values[1]
+  b=values[2]
+  w=r+g+b
+EndFunction
+
+Function getLargest(in number port,out number sig, out number
+  x, out number y, out number w, out number h)
+  values = Sensor.ReadI2CRegisters(port, 1, 80, 6)
+  sig = values[0]
+  x = values[2]
+  y = values[3]
+  w = values[4]
+  h = values[5]
+EndFunction
+
+Function getSignature(in number port, in number sig, out number
+  x, out number y, out number w, out number h)
+  address = 80 + sig
+  values = Sensor.ReadI2CRegisters(port, 1, address, 5)
+  'num_of_matches = values[0]
+  x = values[1]
+  y = values[2]
+  w = values[3]
+  h = values[4]
+EndFunction
+
+Sub PixySignature
+  While 1=1
+    floorValues = Sensor.ReadI2CRegisters(4, 1, 80, 6)
+    @floorSig = floorValues[0]
+    getLargest(1,@sig,@x,@y,@w,@h)
+    getSignature(1,1,@x1,@y1,@w1,@h1)
+    getSignature(1,2,@x2,@y2,@w2,@h2)
+  EndWhile
+EndSub
+
+Sub PixyWall
+  While 1=1
+    getRGB(2,200,40,@f)
+    getRGB(2,50,128,@l)
+    getRGB(2,250,128,@r)
+  EndWhile
+EndSub
+
+Function waitDegrees(in number degrees)
+  dDegrees=Motor.GetCount("D")
+  While Math.Abs(Motor.GetCount("D")-dDegrees)<degrees
+    'wait
+  EndWhile
+EndFunction
+
+Sub Steering
+  Motor.StartPower("A",50)
+  Program.Delay(300)
+  
+  While Motor.GetSpeed("A")<>0
+    'wait
+  EndWhile
+  
+  Motor.ResetCount("A")
+  
+  While followTraffic=0
+    Motor.StartPower("D",speed)
+    relativeHeading=target-Sensor.ReadRawValue(3,0)
+    correction=-45+turn-Motor.GetCount("A")
+    Motor.StartPower("A",correction)
+  EndWhile
+EndSub
+
+Sub Traffic
+  While followTraffic=0
+    speed=Mainspeed
+    
+    'Calculate traffic distance
+    a=Math.Power(@x-128,2)
+    b=Math.Power(@y-300,2)
+    trafficDistance=Math.SquareRoot(a+b)
+    
+    If (Motor.GetSpeed("D")<20 And Time.GetS()>1000) Then
+      Speaker.Tone(100,240,50)
+      speed=-50
+      Program.Delay(500)
+      speed=Mainspeed
+      Time.Reset()
+      
+    Else
+      
+      'checking Left and right wall
+      If @l<150 Or @r<150 Then
+        If @l>@r Then
+          turn=45
+        Else
+          turn=-45
+        EndIf
+        
+      Else
+        If trafficDistance<260 And logic=1 Then
+          
+          'check Green or Red to follow traffic
+          If (@w1*@h1)>@w2*@h2 Then
+            
+            If @x1<green Or @y1>200 Then
+              'Follow Green Traffic
+              turn=((green-@x1)*@y1*0.5)*0.02
+            Else
+              turn=relativeHeading*1
+            EndIf
+            
+          Else
+            
+            If @x2>red Or @y2>200 Then
+              'Follow Red Traffic
+              turn=((red-@x2)*@y2*0.5)*0.02
+            Else
+              turn=relativeHeading*0.8
+            EndIf
+            
+          EndIf
+          
+        Else
+          'Follow Gyro heading
+          turn=relativeHeading*1.8
+        EndIf
+        
+      EndIf
+    EndIf
+  EndWhile
+EndSub
+
+Thread.Run=PixyWall
+Thread.Run=Traffic
+Thread.Run=PixySignature
+
+Mainspeed=70
+speed=Mainspeed
+target=0
+turnDegrees=91
+count=0
+turn=0
+relativeHeading=0
+totalDegrees=0
+logic=1
+green=240
+red=30
+
+Time.Reset()
+
+While count<12
+  
+  'Loop first time
+  If count=0 Then
+    waitDegrees(300)
+    @floorSig=0
+    
+    'Loop until sensor see line to know cw or ccw
+    While @floorSig=0
+      'wait
+    EndWhile
+    
+    If @floorSig=1 Then
+      CW=1
+      target=-90
+    Else
+      CW=2
+      target=90
+    EndIf
+    
+  Else
+    
+    'Loop for 12 times
+    Motor.ResetCount("D")
+    
+    @floorSig=0
+    
+    While Motor.GetCount("D")<800 Or @floorSig<>CW
+      'WAIT
+    EndWhile
+    
+  EndIf
+  
+  Speaker.Tone(100,440,50)
+  
+  If CW=@sig Then
+    logic=0
+    waitDegrees(400)
+    logic=1
+    Speaker.Tone(100,640,50)
+  EndIf
+  
+  If CW=1 Then
+    turnDegrees=90
+  Else
+    turnDegrees=90
+  EndIf
+  
+  'changing the turning degrees for each turn
+  If CW=1 Then
+    target=target-turnDegrees
+  Else
+    target=target+turnDegrees
+  EndIf
+  
+  count=count+1
+  
+EndWhile
+
+'Lost turn
+If CW=1 Then
+  target=count*-90
+  CW=2
+Else
+  target=count*90
+  CW=1
+EndIf
