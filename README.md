@@ -7,7 +7,19 @@ This repository showcases our final robot design, developed to complete both the
 # Table of Contents
 
 # Summary Video
-This 6-minute video provides a brief overview of our project and its documentation. We encourage you to watch it for a quick and clear understanding of our work!
+This 6-minute video provides a brief overview of our project and its documentation. We encourage you to watch it for a quick and clear understanding of our work!  
+▶ **Click** to watch our robot overview!
+
+<p align="center">
+  <a href="https://youtu.be/lfIao4gjNiY?si=KfRUL7o7bcm-aIM9" target="_blank">
+    <img
+      width="700"
+      alt="Watch Our Summary Video"
+      src="https://github.com/user-attachments/assets/b2d92536-0bd9-4c15-8e7d-a66960096aeb"
+    />
+  </a>
+</p>
+
 
 # Team Members
 We are X-UniTech, a team of two teacher trainees from Malaysia, made up of **Raymond Ting Yih Wei**, the brain behind the code, and **Carmen Heng Jia Min**, the hands behind the robot. Together, we turn ideas into robots!
@@ -29,7 +41,7 @@ We are X-UniTech, a team of two teacher trainees from Malaysia, made up of **Ray
     <td align="center"><strong>Left View</strong><br><img src="https://github.com/user-attachments/assets/c2df38c0-c39f-470d-aa3e-501a581375d2" width="300" alt="Left View"></td>
   </tr>
   <tr>
-    <td align="center"><strong>Bottom View</strong><br><img src="https://github.com/user-attachments/assets/8d5aa74f-a769-46b4-88b2-701372d4f17d" width="300" alt="Bottom View"></td>
+    <td align="center"><strong>Bottom View</strong><br><img src="https://github.com/user-attachments/assets/5e352a09-f4b6-4a53-b957-7d823d114d43" width="300" alt="Bottom View"></td>
     <td align="center"><strong>Back View</strong><br><img src="https://github.com/user-attachments/assets/1801f573-e855-4326-bf82-026ae7fcefd7" width="300" alt="Back View"></td>
     <td align="center"><strong>Right View</strong><br><img src="https://github.com/user-attachments/assets/d4d43af9-68ea-4f3c-ac10-84a0d1e47acc" width="300" alt="Right View"></td>
   </tr>
@@ -124,7 +136,7 @@ This combination also provides an ideal force and thrust-to-weight ratio. Here�
 ## 1.3 Steering System
 
 <p align="center">
-<img width="1000" alt="Steering Structure" src="https://github.com/user-attachments/assets/7d06e6bf-942e-4d2b-97ca-d499c019bd9b" />
+<img width="600" alt="Steering Structure" src="https://github.com/user-attachments/assets/7d06e6bf-942e-4d2b-97ca-d499c019bd9b" />
 </p>
 
 Our steering system combines a **LEGO Pin Crank (33299)**, which serves as the transmission component, with custom-designed 3D-printed parts. LEGO axles and connectors are used to connect the components and complete the steering mechanism.
@@ -174,7 +186,7 @@ The maximum current value is used, while both EV3 Medium Motors are calculated u
 </p>
 
 The total power consumption is: 0.015 + 0.075 + 0.200 + 0.175 + 14.400 + 0.700 = <strong><ins>15.565 W</ins></strong>.  
-Here’s how to calculate the Battery Runtime Calculation for Max Load (15.565W):
+Here’s how to calculate the **Battery Runtime Calculation** for Max Load (15.565W):
 
 
 <div align="center">
@@ -208,4 +220,83 @@ Here’s how to calculate the Battery Runtime Calculation for Max Load (15.565W)
 </table>
 
 </div>
+
+## 2.2 Sensor Trade-off & Selection
+
+**(i) Distance Detection:** <strong><ins>EV3 Ultrasonic Sensor</ins></strong> selected over EV3 Infrared Sensor.   
+**Reason:** Selected for its wider detection range and direct distance measurement, providing more suitable feedback for obstacle detection and avoidance. 
+<p align="center">
+<img width="700" alt="42" src="https://github.com/user-attachments/assets/e10e083c-b135-4f50-adee-115a2a26a88e" />
+</p>
+
+**(ii) Colour Detection:** <strong><ins>EV3 Colour Sensor</ins></strong> selected over NXT Colour Sensor.  
+**Reason:** Selected for its higher sampling rate and additional colour detection capability, enabling faster and more responsive detection of field markings. 
+<p align="center">
+<img width="700" alt="43" src="https://github.com/user-attachments/assets/4b84f858-40c9-43fe-aa64-28332f583935" />
+</p>
+
+**(iii) Visual Recognition:** <strong><ins>Pixy Camera</ins></strong> selected over OpenMV Camera.  
+**Reason:** Selected for its built-in colour recognition and simpler EV3 integration, reducing image-processing complexity when identifying red and green pillars.
+<p align="center">
+<img width="700" alt="44" src="https://github.com/user-attachments/assets/4ed54dc4-56aa-44f6-987c-d5c648682821" />
+</p>
+
+**(iv) Heading Detection:** <strong><ins>Gyro Sensor</ins></strong> selected over motor rotation-based turning.  
+**Reason:** Selected to provide real-time heading feedback, allowing the robot to correct turning errors caused by wheel slippage and mechanical variations. 
+<p align="center">
+<img width="700" alt="45" src="https://github.com/user-attachments/assets/badf145b-9548-4137-85e5-c15a3af39b51" />
+</p>
+
+## 2.3 Sensor Placement using field geometry
+Sensors are positioned according to the competition field geometry to support navigation and object detection.  
+**(i) Ultrasonic Sensors:** Front-mounted at 8 cm height to monitor the left and right walls and maintain safe navigation distances. 
+<p align="center">
+<img width="700" alt="46" src="https://github.com/user-attachments/assets/fd150ba6-84c1-4fb6-87ef-2486504a4e8f" />
+</p>
+
+**(ii) Colour Sensor:** Front-centred and downward-facing to detect field markings and identify turning points for 90° turns. 
+<p align="center">
+<img width="700" alt="47" src="https://github.com/user-attachments/assets/7a5795ec-bbc6-45e0-831d-80e623851e3d" />
+</p>
+
+**(iii) Gyro Sensor:** Mounted above the steering motor, aligned with the robot's longitudinal axis to measure heading and support accurate turning corrections.
+<p align="center">
+<img width="700" alt="48" src="https://github.com/user-attachments/assets/ddd4969d-22c9-4bf3-bc88-1089fdf6d882" />
+</p>
+
+**(iv) Pixy Camera:** Rear-mounted at 29 cm height to detect coloured pillars and provide a wider view of the competition field. 
+<p align="center">
+<img width="700" alt="49" src="https://github.com/user-attachments/assets/14c8aa61-0b7a-47b0-a6fa-b6227dd16ce3" />
+</p>
+
+## 2.4 Calibration Method
+We developed a custom <strong><ins>HSV-based calibration program</ins></strong> to distinguish blue and orange field markings. RGB readings are converted into Hue values, and the average of the highest readings from both colours is used to establish the detection threshold.
+
+<div align="center">
+<table width="800">
+  <tr>
+    <td width="50%" align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/629698ec-bb0e-41b7-8f93-d2b4e431cb30" width="400" alt="Orange Line Calibration Code">
+    </td>
+    <td width="50%" align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/3ca6c277-36f8-4ab6-8fea-0bf71c9210f0" width="400" alt="Blue Line Calibration Code">
+    </td>
+  </tr>
+</table>
+</div>
+
+▶ Refer to the video for the [**calibration sample**](https://youtu.be/Sz6XEijKHzE).
+
+## 2.5 Failure Point Consideration
+
+We identified potential failures involving data cables, sensor interference, camera lighting, and steering components, with preventive measures implemented to improve system reliability.
+
+**(i) Data Cable:** Loose cables caused by robot movement and vibration may interrupt sensor connections. We check all connections before each run and ensure cables are properly secured.
+
+**(ii) Gyro Sensor:** Magnetic interference may cause inaccurate heading readings and turning angles. We use an improved mounting position above the Steering Motor and verify readings before each run.
+
+**(iii) Pixy Camera:** Lighting changes may affect pillar recognition and distance estimation. We angle the camera downward to reduce interference from overhead lighting.
+
+**(iv) Steering Mechanism:** Repeated steering movements may cause axles to slide, resulting in loose linkages or inaccurate steering. We secure axles with bushes or stoppers and inspect connections regularly.
+
 
