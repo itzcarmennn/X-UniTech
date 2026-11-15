@@ -1,6 +1,6 @@
 # X-UniTech Team, Malaysia
 
-Welcome to X-UniTech Team Malaysia! 
+**Welcome to X-UniTech Team Malaysia!** 
 
 This repository showcases our final robot design, developed to complete both the **Open Challenge** and **Obstacle Challenge**. For an overview of our development journey from **Generation 1 to Generation 4**, please refer to the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/4292ab41017db0be74e6131bf3cbaa6cbdb87c5d/others/Robot%20Development%20%26%20Iteration%20Cycle.pdf). For detailed information about our robot's design, engineering decisions, calculations, and testing results, please refer to our **[Engineering Journal](PASTE_YOUR_ENGINEERING_JOURNAL_LINK_HERE)**.
 
@@ -636,3 +636,169 @@ By changing the target angle from 90° to 91° for the first 6 loops and 90.5° 
 **(iv) Driving Motor:** Add temperature monitoring to prevent overheating.
 
 **(v) System Monitoring:** Add real-time indicators to detect sensor problems.
+
+# 5.0 Reproducibility & GitHub Quality
+
+## 5.1 Fully Reproducible System
+Our GitHub repository and Engineering Journal provide the necessary information to reproduce our robot, including mechanical design, component specifications, wiring connections, sensor configurations and programming details. 
+
+**(i) Hardware Requirements**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/48925a14-0808-4d71-99a7-36edc5ea7bcc" />
+</p>
+
+**(ii) Port Configuration**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/2600f9ef-e070-49fc-a822-44926d1eeb88" />
+</p>
+
+Refer to [**Wiring Diagram**](https://github.com/itzcarmennn/X-UniTech/blob/598a1da6693f5fb5fb8dd6411f0052927905f4f6/schemes/Wiring%20Diagrams%20(Final%20Version).pdf)
+
+**(iii) Software Requirements**
+
+<table>
+  <thead>
+    <tr>
+      <th>Software</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center"><strong>Clev3r</strong></td>
+      <td>
+        <ul>
+          <li>Used for robot programming, developing and executing the BP Program.</li>
+          <li>Refer to the installation address: <a href="https://clev3r.ru/">https://clev3r.ru/</a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><strong>PixyMon</strong></td>
+      <td>
+        <ul>
+          <li>Used to configure and tune Pixy Camera settings, including colour signatures and detection parameters.</li>
+          <li>Refer to the installation address: <a href="https://pixycam.com/downloads-pixy2/">https://pixycam.com/downloads-pixy2/</a></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Any 3D Printing Software</strong></td>
+      <td>
+        <ul>
+          <li>Used to prepare the provided 3D model files (STL) for printing.</li>
+          <li><a href="https://github.com/itzcarmennn/X-UniTech/tree/598a1da6693f5fb5fb8dd6411f0052927905f4f6/models/Materials%20of%20Computer-Aided%20Design%20(CAD)%20%5BFourth%20Generation%5D">3D Printing Part</a></li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+**(iv) Setup Instructions**
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center" bgcolor="#B9E3F5">
+        <strong>Build the Robot</strong>
+      </td>
+      <td>
+        <ul>
+          <li>Assemble the robot according to the provided CAD files and mechanical design documentation.</li>
+          <li>Connect all motors and sensors to their designated EV3 ports by referring to the wiring diagram.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#B9E3F5">
+        <strong>Install the Required Software</strong>
+      </td>
+      <td>
+        <ul>
+          <li>Download and install Clev3R for robot programming.</li>
+          <li>Download and install PixyMon for Pixy Camera configuration.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#B9E3F5">
+        <strong>Configure and Tune the Pixy Camera</strong>
+      </td>
+      <td>
+        <ul>
+          <li>Connect the Pixy Camera to the computer.</li>
+          <li>Configure the colour signatures and adjust the camera settings to ensure reliable pillar detection.</li>
+          <li>Refer to the <a href="https://youtu.be/fSxTpedWmcY">colour recognition tutorial</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#B9E3F5">
+        <strong>Load and Run the Provided Program</strong>
+      </td>
+      <td>
+        <ul>
+          <li>Locate the provided BP Program in the GitHub Repository.</li>
+          <li>Load and execute the program using the Clev3R environment.</li>
+          <li>Refer to the <a href="https://youtu.be/DMhK63uLRww">Clev3R tutorial</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#B9E3F5">
+        <strong>Perform Additional Tuning and Testing</strong>
+      </td>
+      <td>
+        <ul>
+          <li>Make minor adjustments to the robot's parameters according to your hardware configuration and testing environment.</li>
+          <li>Refer to the Algorithm section for explanations of the relevant parameters and their functions.</li>
+          <li>Conduct your own testing and collect performance data to determine the most suitable settings for your robot.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## 5.2 Clear Project Structure
+
+We provide the robot CAD models, system schematics, programs for both challenges, and detailed engineering justifications. All files are organised to make information easy to find and understand.
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/2967d390-d152-4932-b58d-ff46c581a6a2" />
+</p>
+
+## 5.3 Meaningful Commit Messages
+
+We regularly updated our GitHub repository throughout the preparation and robot development process. Each commit records the changes and improvements made to our project.
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/846c6b8f-eb96-49a2-9cb9-546cb9d83743" />
+</p>
+
+## 5.4 Testing Workflow Documented
+
+The robot development and testing process was organised into five major stages, beginning with the initial prototype and progressing through four generations of development before entering the final training and adjustment phase.
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/021a36c3-dee0-4bb4-a69f-0025f7680061" />
+</p>
+
+## 5.5 Versioning or Release Notes Included
+
+Detailed information about all four robot generations, including their designs, modifications, and development progress, is available in the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/598a1da6693f5fb5fb8dd6411f0052927905f4f6/others/Robot%20Development%20%26%20Iteration%20Cycle.pdf).
+
+# Github Content Justification
+
+**models:** This folder contains the 3D CAD models of all four robot generations, including chassis designs, mechanical structures and custom 3D-printed components. The files are provided in `.LXFML` and `.io` formats.  
+
+**others:** This folder contains supporting documents, including the fourth-generation robot building instructions and the Robot Development & Iteration Cycle.  
+
+**schemes:** This folder contains electrical schematics and wiring diagrams of the robot's electronic components, sensors and motors, including the configurations for both the Open Challenge and Obstacle Challenge. The files are provided in PDF format.  
+
+**src:** This folder contains the source code, programming flowcharts and state machine diagrams for all four robot generations, covering both the Open Challenge and Obstacle Challenge.  
+
+**t-photos:** This folder contains photos of the X-UniTech team participating in the WRO 2026 Future Engineers Category.  
+
+**v-photos:** This folder contains photos of all four robot generations from different perspectives, including the front, rear, left, right, top and bottom views.
