@@ -498,3 +498,141 @@ By changing the target angle from 90° to 91° for the first 6 loops and 90.5° 
 </p> 
 
 [Click for detailed information of Edge Cases](https://drive.google.com/file/d/1VIvrBWQ90-IlU4U884OCexYI5pkDSnRJ/view?usp=sharing)
+
+# 4.0 Systems Thinking and Engineering Decision
+
+## 4.1 Subsystem Interaction
+
+<p align="center">
+<img width="600" alt="Screenshot 2026-11-15 162623" src="https://github.com/user-attachments/assets/3ef2762a-71f9-45f1-b4ec-f846b5a379a9" />
+</p> 
+
+• The **five subsystems** work together to achieve autonomous navigation.  
+• The Vision and Obstacle Detection Systems identify pillars, walls, and surrounding distances, while the Gyro and Colour Sensors help track the robot's heading and position on the field.  
+• The Navigation System processes this information to decide the next movement, and the Control System sends commands to the motors.   
+• Meanwhile, the Mechanical System allows the robot to move and turn as required.
+
+## 4.2 Explicit Constraints
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/6cdfecaf-d0b4-463e-9a87-240c11f91a75" />
+</p> 
+
+**(i) Physical Constraints:** We designed the robot to stay within the 300 mm size limit while keeping the camera high and the robot lightweight at 800 g.  
+
+**(ii) Platform Hardware Constraints:** Since the EV3 Brick has only four sensor ports, we used a MUX to connect both Ultrasonic Sensors through one port.  
+
+**(iii) Component Constraints:** The EV3 Brick, motors, and sensors take up a lot of space, so we designed a custom 3D-printed chassis to fit all components neatly.
+
+**(iv) Computational Constraints:** Due to the EV3's limited processing power (300MHz), we used simple calculations, predefined values, and structured program logic to keep the robot running efficiently. 
+
+## 4.3 Trade-off Constraints
+
+**（i）Physical Constraint – Camera Height**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/7dfd9b07-316a-4941-b042-a34794f57437" />
+</p> 
+
+**Testing Table:**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/92496e89-d07f-4b0b-8f18-db977429f4ec" />
+</p> 
+
+• We tested different camera heights and found that 295 mm provided the best detection performance, successfully detecting and avoiding all pillars in 3 out of 3 trials.  
+• Therefore, we selected **295 mm** to maximize the camera's viewing range while maintaining a controlled driving speed.
+
+**(ii) Platform Hardware Constraint – Sensor Coverage**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/2b6ecaba-8df6-4376-a027-5d0bea1419bf" />
+</p>
+
+**Testing Table:**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/2b31eb72-61c4-416e-ad4b-6e2b7fdbde56" />
+</p>
+
+• We selected **two Ultrasonic Sensors** instead of one to monitor both sides of the robot.  
+• Although this required an additional MUX and more wiring, testing showed an improvement in navigation success from 20% to 100%.
+
+**(iii) Component Constraint – Educational Accessibility**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/f1f7a7f7-8259-4f04-ab8b-7e28495dba31" />
+</p>
+
+• We continued using the **LEGO Mindstorms EV3 platform** despite its large components because it is familiar and accessible for educational robotics.  
+• A custom **3D-printed chassis** was developed to overcome its space limitations.
+
+**(iv) Computational Constraint – Programming Performance**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/9f520d61-ecfb-4af3-859c-fb075b126870" />
+</p>
+
+**Testing Table:**
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/257f85fc-b384-401f-853f-eb5d561433cf" />
+</p>
+
+• We switched from the LEGO Mindstorms EV3 programming environment to **Clev3R** to achieve faster program execution.  
+• Testing showed that Clev3R achieved 968 sensor readings per second compared to 300, approximately 3.23 times faster, despite requiring more learning and development effort.
+
+ ## 4.4 Iteration Cycles
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/9b831256-f4f0-4c2c-8c17-b0de6ff2f17d" />
+</p>
+
+<strong><ins>Generation 1: Initial Prototype</ins></strong>  
+**Justification:** Established a basic robot design to test fundamental movement and navigation, providing a starting point for identifying design limitations.
+
+<strong><ins>Generation 2: Mechanical Improvements</ins></strong>  
+**Justification:** Introduced two Medium Motors, smaller wheels, and dual Ultrasonic Sensors to improve manoeuvrability and obstacle detection.
+
+<strong><ins>Generation 3: Further Optimisation</ins></strong>  
+**Justification:** Removed steering gear reduction to achieve faster steering response and focused on improving navigation algorithms and software performance.
+
+<strong><ins>Generation 4: Final Generation</ins></strong>  
+**Justification:** Introduced a custom 3D-printed chassis with dedicated component mounts to simplify assembly, improve accessibility, and support easier maintenance.
+
+## 4.5 Risk/Failure Analysis
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/4fe642fe-caf0-470d-b97c-527692c86b5e" width="325" alt="Left Image">
+    </td>
+    <td align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/e93cb603-8b46-4acf-ae33-d3f7692c4fa2" width="325" alt="Right Image">
+    </td>
+  </tr>
+</table>
+</div>
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/3db8f8de-1a66-4413-b767-5c46919d2601" />
+</p>
+
+## 4.6 Sensors and Motors' Risk / Failure Analysis
+
+<p align="center">
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/e30d729a-56d4-4cb0-9537-c88c460bcb3a" />
+</p>
+
+## 4.7 Possible Improvements
+
+**(i) Pixy Camera:** Add an adjustable sunshade to reduce lighting interference.
+
+**(ii) Gyro Sensor:** Add automatic recalibration before each run to improve heading accuracy.
+
+**(iii) Colour Sensor:** Develop automatic calibration for different field conditions.
+
+**(iv) Driving Motor:** Add temperature monitoring to prevent overheating.
+
+**(v) System Monitoring:** Add real-time indicators to detect sensor problems.
