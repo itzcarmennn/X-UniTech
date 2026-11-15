@@ -47,19 +47,23 @@ We are X-UniTech, a team of two teacher trainees from Malaysia, made up of **Ray
   </tr>
 </table>
 
-# Performance Video 
+# Performance Video
 
 <table>
   <tr>
     <td align="center" width="50%">
       <strong>Open Challenge</strong><br><br>
-      <img src="https://github.com/user-attachments/assets/ab32c76a-84c3-4365-bd72-2c4ba67838fe" width="100%" alt="Open Challenge"><br><br>
-      <a href="https://youtu.be/6Eh0cw0jpJg"><strong>▶ Watch Open Challenge Video</strong></a>
+      <a href="https://youtu.be/6Eh0cw0jpJg" target="_blank">
+        <img src="https://github.com/user-attachments/assets/ab32c76a-84c3-4365-bd72-2c4ba67838fe" width="100%" alt="Open Challenge">
+      </a><br><br>
+      <a href="https://youtu.be/6Eh0cw0jpJg" target="_blank"><strong>▶ Watch Open Challenge Video</strong></a>
     </td>
     <td align="center" width="50%">
       <strong>Obstacle Challenge</strong><br><br>
-      <img src="https://github.com/user-attachments/assets/da579b6e-b8f2-4b8c-90f3-ecbf68387cb3" width="100%" alt="Obstacle Challenge"><br><br>
-      <a href="https://youtu.be/F9Ot-lOl4QI"><strong>▶ Watch Obstacle Challenge Video</strong></a>
+      <a href="https://youtu.be/F9Ot-lOl4QI" target="_blank">
+        <img src="https://github.com/user-attachments/assets/da579b6e-b8f2-4b8c-90f3-ecbf68387cb3" width="100%" alt="Obstacle Challenge">
+      </a><br><br>
+      <a href="https://youtu.be/F9Ot-lOl4QI" target="_blank"><strong>▶ Watch Obstacle Challenge Video</strong></a>
     </td>
   </tr>
 </table>
@@ -299,4 +303,198 @@ We identified potential failures involving data cables, sensor interference, cam
 
 **(iv) Steering Mechanism:** Repeated steering movements may cause axles to slide, resulting in loose linkages or inaccurate steering. We secure axles with bushes or stoppers and inspect connections regularly.
 
+# 3.0 Software Architecture and Obstacle Strategy
 
+**Programming Environment:** We used [**Clev3R**](https://clev3r.ru/), which supports BASIC Plus programming, to develop our robot control programs.
+
+## 3.1 Open Challenge State Machine with Rationale
+
+•  State A determines the navigation <strong><ins>direction</ins></strong> based on surrounding wall distances.  
+•  State B repeats the navigation <strong><ins>sequence</ins></strong> through a loop to reduce code duplication.  
+•  State C uses coordinate feedback to fine-tune the robot's <strong><ins>final position</ins></strong>, ensuring a more accurate stopping point.
+<p align="center">
+<img width="700" alt="Open Challenge State Machine with Rasionale" src="https://github.com/user-attachments/assets/1557f005-15b2-473d-b193-39f0e3c6f378" />
+</p>
+
+## 3.2 Obstacle Challenge State Machine with Rationale 
+
+•  State A handles the initial navigation and uses Ultrasonic to guide the robot <strong><ins>out of the parking area</ins></strong>.  
+•  State B manages <strong><ins>obstacle navigation</ins></strong> by combining sensor data to detect walls, recognise pillars and avoid obstacles.  
+•  State C controls the <strong><ins>final parking</ins></strong> process by following the wall, aligning the robot and completing the parking manoeuvre.
+<p align="center">
+<img width="700" alt="Obstacle Challenge State Machine with Rasionale" src="https://github.com/user-attachments/assets/7599f995-e5e0-4411-b50d-4b6a1b440c6b" />
+</p>
+
+## 3.3 Algorithm Justification
+
+
+### 3.3.1 PID (Steering Control)
+
+<table>
+  <tr>
+    <td width="35%" align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/af547945-6cfc-4c1d-8633-60efa790a2ab" width="350" alt="PID Steering Control">
+    </td>
+    <td width="65%" valign="middle">
+      <ul>
+        <li><strong>Function:</strong> Uses motor encoder feedback and PID calculations to adjust the steering motor position.</li>
+        <li><strong>Justification:</strong> Provides smoother and more accurate steering.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 123818" src="https://github.com/user-attachments/assets/987372e2-3dc4-42fa-84fc-bdac17eada21" />
+</p>
+
+### 3.3.2 IMU (Gyroscope-Based Heading Correction)
+
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/e66a2f1a-da58-49fa-80a8-d8940cc1c928" width="300" alt="Left Image">
+    </td>
+    <td align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/efebee0b-049a-4989-895a-95617794e8c2" width="300" alt="Right Image">
+    </td>
+  </tr>
+</table>
+</div>
+
+**Function:** Monitors the robot's heading and adjusts steering based on the difference between actual and target angles.  
+**Justification:** Compensates for turning deviations and reduces cumulative navigation errors.
+
+**Heading Angle Tuning Table**
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 125331" src="https://github.com/user-attachments/assets/8e605a69-8768-4ee9-bf52-2cb2f608a6a5" />
+</p>
+
+**Testing Result:**  
+By changing the target angle from 90° to 91° for the first 6 loops and 90.5° for loops 7–12, the average cumulative error was reduced from 3.95 cm to approximately 0.45 cm. This represents an improvement of around **89%**.
+<p align="center">
+<img width="500" alt="Screenshot 2026-11-15 130559" src="https://github.com/user-attachments/assets/679ba739-1314-4e5a-8afc-a7af93fb0d8f" />
+</p> 
+
+### 3.3.3 CV (Computer Vision) [Pixy Camera]
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/4b02cc4e-1091-41b8-b2be-05d4aef250ce" width="300" alt="Left Image">
+    </td>
+    <td align="center" valign="middle">
+      <img src="https://github.com/user-attachments/assets/5d0b0f81-5d16-420f-9b16-2c1597ed7d9c" /" width="300" alt="Right Image">
+    </td>
+  </tr>
+</table>
+</div>
+
+• **Function:** Detects and identifies coloured pillars (Green, Red and Magenta) using Pixy colour signatures and coordinates.  
+• **Justification:** Enables real-time pillar recognition and provides position data.
+
+**PixyMon Camera Tuning**
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="https://github.com/user-attachments/assets/afb3f8d5-e77b-44dd-a6c7-dda09fb2a521" width="250" alt="Obstacle Signature Settings">
+      <br>
+      Set signature for both Obstacle
+    </td>
+    <td align="center" width="50%">
+      <img src="https://github.com/user-attachments/assets/548361f7-8400-4815-9a6e-9635a15e4b0f" width="250" alt="Coordinate Value">
+      <br>
+      Coordinate value : (158,55)
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="https://github.com/user-attachments/assets/81d1dcd1-e5be-4b0b-8ce5-cf650642cb6b" width="250" alt="PixyMon Signature Label Settings">
+    </td>
+    <td align="center" width="50%">
+      <img src="https://github.com/user-attachments/assets/33902557-6192-4ee4-bc07-0d7428a10447" width="250" alt="PixyMon Expert Settings">
+    </td>
+  </tr>
+</table>
+</div>
+
+### 3.3.4 Mathematical Obstacle Detection (Pythagoras Theorem)
+<p align="center">
+<img width="600" alt="Screenshot 2026-11-15 132410" src="https://github.com/user-attachments/assets/574b78e3-2220-446a-bdca-7fdf08be5dad" />
+</p> 
+
+• **Function:** Uses the Pythagorean theorem to calculate pillar distances from their camera coordinates and identify the nearest obstacle.  
+• **Justification:** Allows the robot to respond based on obstacle proximity instead of reacting to distant objects unnecessarily.
+<p align="center">
+<img width="600" alt="Pythagoras Theorem" src="https://github.com/user-attachments/assets/ee21e986-dc60-47da-aa3b-7447ce07be18" />
+</p> 
+
+### 3.3.5 Obstacle Obedience Strategy (Mathematical Obstacle Tracking & Avoidance) 
+
+<p align="center">
+<img width="600" alt="Screenshot 2026-11-15 133043" src="https://github.com/user-attachments/assets/ae0be29e-789b-47db-baf6-92341170aa9f" />
+</p> 
+
+• **Function:** Uses pillar coordinates and calibrated steering coefficients to control tracking and avoidance movements.  
+• **Justification:** Maintains the intended navigation path while improving obstacle clearance.
+
+**Tracking Target Value Tuning**  
+
+**Notes:** X-coordinate ranges from **0 (far left) to 255 (far right)**. The tested values are near the centre, slightly to the left or right, for tracking green and red pillars. 
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 133533" src="https://github.com/user-attachments/assets/a3fdec31-c31a-4a1e-8fb9-d75685ca585c" />
+</p> 
+
+**Avoidance Threshold Value Tuning**  
+
+**Notes:** Y-coordinate indicates the pillar's vertical position in pixels. When the detected Y-coordinate reaches the predefined threshold, the robot initiates the avoidance maneuver. 
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 133842" src="https://github.com/user-attachments/assets/4a92abe2-45db-40c7-b106-ef1f6f4a8238" />
+</p> 
+
+**Notes:** X-coordinate indicates the pillar's horizontal position in pixels, ranging from 0 (left) to 255 (right). The tested value is subtracted from the current X-coordinate to determine the avoidance target position for green and red pillars. 
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 134024" src="https://github.com/user-attachments/assets/5ec796e4-5ff5-49fe-a6f7-8a4f87fdaa87" />
+</p> 
+
+**Conclusion:** The optimal Pixy camera parameters were selected based on experimental accuracy, with **greenFollow = 140, redFollow = 120, gAvoid = 130, rAvoid = 110, greenAvoid = 245 and redAvoid = 10**, to improve pillar tracking precision, ensure timely avoidance and minimise collision risks during autonomous navigation. 
+
+### 3.3.6 Lane Following (Wall Following)
+<p align="center">
+<img width="500" alt="Screenshot 2026-11-15 135548" src="https://github.com/user-attachments/assets/89adcf9c-705e-4c59-a386-106374b8355d" />
+</p> 
+
+• **Function**: Uses Ultrasonic distance feedback and Gyroscope correction to maintain a predefined distance from the wall.  
+• **Justification:** Provides a stable reference for navigation.
+
+### 3.3.7 Obstacle Obedience Strategy (Wall Avoidance)
+
+<p align="center">
+<img width="500" alt="Screenshot 2026-11-15 140220" src="https://github.com/user-attachments/assets/32dabe3a-b71d-4e09-aabd-ea449adf256c" />
+</p> 
+
+• **Function:** Detects when the robot approaches a wall too closely and applies predefined steering corrections.  
+• **Justification:** Maintains sufficient wall clearance and reduces the risk of collision.
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 140612" src="https://github.com/user-attachments/assets/4ff52dd3-f6f6-4286-82c1-ef6d6d1bdf45" />
+</p> 
+
+[Click for detailed information on Algorithm Justification](https://drive.google.com/file/d/19AUc1A2pQqn_ZS8Qv2cO3PSuVcM3e8Ii/view?usp=sharing)
+
+## 3.4 Edge Cases
+
+**Edge Case 1: Sensor Failure**
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 141440" src="https://github.com/user-attachments/assets/9cb1ce06-bd2d-4b4f-ad60-6a09eb767a5a" />
+</p> 
+
+**Edge Case 2: Abnormal Motion (Robot Stuck)**
+<p align="center">
+<img width="700" alt="Screenshot 2026-11-15 141544" src="https://github.com/user-attachments/assets/e81a8d04-3a70-42f0-8755-3926a3afda25" />
+</p> 
+
+[Click for detailed information of Edge Cases](https://drive.google.com/file/d/1VIvrBWQ90-IlU4U884OCexYI5pkDSnRJ/view?usp=sharing)
