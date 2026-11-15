@@ -2,9 +2,48 @@
 
 **Welcome to X-UniTech Team Malaysia!** 
 
-This repository showcases our final robot design, developed to complete both the **Open Challenge** and **Obstacle Challenge**. For an overview of our development journey from **Generation 1 to Generation 4**, please refer to the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/4292ab41017db0be74e6131bf3cbaa6cbdb87c5d/others/Robot%20Development%20%26%20Iteration%20Cycle.pdf). For detailed information about our robot's design, engineering decisions, calculations, and testing results, please refer to our **[Engineering Journal](PASTE_YOUR_ENGINEERING_JOURNAL_LINK_HERE)**.
+This repository presents our final robot design for the **Open Challenge** and **Obstacle Challenge**, documents its development from **Generation 1 to Generation 4** in the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/4292ab41017db0be74e6131bf3cbaa6cbdb87c5d/others/Robot%20Development%20%26%20Iteration%20Cycle.pdf), and provides detailed design information, engineering decisions, calculations, and testing results in our [**Engineering Journal**](PASTE_YOUR_ENGINEERING_JOURNAL_LINK_HERE). 
 
 # Table of Contents
+
+- [Summary Video](#summary-video)
+- [Team Members](#team-members)
+- [Robot Overview](#robot-overview)
+- [Performance Video](#performance-video)
+
+- [1.0 Mobility and Mechanical Design](#10-mobility-and-mechanical-design)
+  - [1.1 Mechanical Structure](#11-mechanical-structure)
+  - [1.2 Drive System](#12-drive-system)
+  - [1.3 Steering System](#13-steering-system)
+
+- [2.0 Power and Sensor Architecture](#20-power-and-sensor-architecture)
+  - [2.1 Power Budget](#21-power-budget)
+  - [2.2 Sensor Trade-off & Selection](#22-sensor-trade-off--selection)
+  - [2.3 Sensor Placement using Field Geometry](#23-sensor-placement-using-field-geometry)
+  - [2.4 Calibration Method](#24-calibration-method)
+  - [2.5 Failure Point Consideration](#25-failure-point-consideration)
+
+- [3.0 Software Architecture and Obstacle Strategy](#30-software-architecture-and-obstacle-strategy)
+  - [3.1 Open Challenge State Machine with Rationale](#31-open-challenge-state-machine-with-rationale)
+  - [3.2 Obstacle Challenge State Machine with Rationale](#32-obstacle-challenge-state-machine-with-rationale)
+  - [3.3 Algorithm Justification](#33-algorithm-justification)
+  - [3.4 Edge Cases](#34-edge-cases)
+
+- [4.0 Systems Thinking and Engineering Decision](#40-systems-thinking-and-engineering-decision)
+  - [4.1 Subsystem Interaction](#41-subsystem-interaction)
+  - [4.2 Explicit Constraints](#42-explicit-constraints)
+  - [4.3 Trade-off Constraints](#43-trade-off-constraints)
+  - [4.4 Iteration Cycles](#44-iteration-cycles)
+  - [4.5 Risk/Failure Analysis](#45-riskfailure-analysis)
+  - [4.6 Sensors and Motors' Risk / Failure Analysis](#46-sensors-and-motors-risk--failure-analysis)
+  - [4.7 Possible Improvements](#47-possible-improvements)
+
+- [5.0 Reproducibility & GitHub Quality](#50-reproducibility--github-quality)
+  - [5.1 Fully Reproducible System](#51-fully-reproducible-system)
+  - [5.2 Clear Project Structure](#52-clear-project-structure)
+  - [5.3 Meaningful Commit Messages](#53-meaningful-commit-messages)
+  - [5.4 Testing Workflow Documented](#54-testing-workflow-documented)
+  - [5.5 Versioning or Release Notes Included](#55-versioning-or-release-notes-included)
 
 # Summary Video
 This 6-minute video provides a brief overview of our project and its documentation. We encourage you to watch it for a quick and clear understanding of our work!  
@@ -22,7 +61,7 @@ This 6-minute video provides a brief overview of our project and its documentati
 
 
 # Team Members
-We are X-UniTech, a team of two teacher trainees from Malaysia, made up of **Raymond Ting Yih Wei**, the brain behind the code, and **Carmen Heng Jia Min**, the hands behind the robot. Together, we turn ideas into robots!
+We are X-UniTech, a team of two teacher trainees from Malaysia, made up of **Raymond Ting Yih Wei**, the brain behind the code, and **Carmen Heng Jia Min**, the hands behind the robot. Together, we turn ideas into **robots**!
 
 <p align="center">
 <img width="700" alt="Team Photo (Version 2)" src="https://github.com/user-attachments/assets/ab3b53d3-a38d-4b28-a1b8-44ece449975a" />
