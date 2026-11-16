@@ -124,9 +124,9 @@ If you are interested, explore the previous robot generations (Generation 1–3)
 
 **Robot Dimensions:** Our robot dimensions (**250 mm × 120 mm × 295 mm**) were selected to maximize camera height while maintaining a compact and mechanically stable structure that accommodates all components. 
 
-**Robot Building Process:** Follow our step-by-step building tutorial to learn how to assemble the robot in the [Video Building Process](https://youtu.be/vY-6_uyMKQI?si=AjLbu2vJUjDL66he).
+**Robot Building Process:** Follow our step-by-step building tutorial to learn how to assemble the robot in the [**Video Building Process**](https://youtu.be/vY-6_uyMKQI?si=AjLbu2vJUjDL66he).
 
-**Robot Chassis:** We initially used a LEGO-built chassis in Generation 1-3 but later switched to a custom 3D-printed chassis to reduce the complexity of multiple LEGO connections and create a more compact, stable structure.
+**Robot Chassis:** We chose a **custom 3D-printed chassis** over the LEGO-built chassis because the multiple LEGO connections **increased structural complexity and limited design flexibility**. The 3D-printed design allowed us to integrate components more efficiently, reduce unnecessary connections and achieve a more compact and stable structure. 
 
 <table>
   <tr>
@@ -196,13 +196,13 @@ Our steering system combines a **LEGO Pin Crank (33299)**, which serves as the t
 <img width="320" alt="image" src="https://github.com/user-attachments/assets/f4bc829e-ff4a-40f0-8559-754e452a900b" />
 </p>
 
-**Ackermann Steering:** We chose Ackermann steering because it allows the inner wheel to turn more than the outer wheel, resulting in smoother turns. The following calculation shows the outer wheel angle when the inner wheel angle is 35° during a left turn.
+**Ackermann Steering:** We chose **Ackermann steering over conventional steering** because it provides better cornering geometry and reduces tyre scrubbing. The calculated outer wheel angle of **24.57°** (inner angle: 35°) ensures both wheels follow different turning paths, improving turning efficiency and manoeuvrability. 
 
 <p align="center">
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/ebd5f25d-d3a0-40bd-96c0-6a1cd12fa678" />
 </p>
 
-**Iterations & Trade-off:** In Generation 2, we tested a **gear-reduced steering system** but found it responded more slowly than direct steering. Therefore, we decided to retain the **direct steering** mechanism for more responsive turning. 
+**Iterations & Trade-off:**  During Generation 2, we tested a gear-reduced steering mechanism but found that it produced a slower steering response compared to direct steering. Therefore, we retained **direct steering** to achieve faster response and better manoeuvrability during obstacle navigation. 
 
 <p align="center">
 <img width="700" alt="Iterations   Trade-off" src="https://github.com/user-attachments/assets/da26252a-6840-4fd1-a85b-9c0cbe13f55c" />
@@ -585,8 +585,8 @@ By changing the target angle from 90° to 91° for the first 6 loops and 90.5° 
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/92496e89-d07f-4b0b-8f18-db977429f4ec" />
 </p> 
 
-• We tested different camera heights and found that 295 mm provided the best detection performance, successfully detecting and avoiding all pillars in 3 out of 3 trials.  
-• Therefore, we selected **295 mm** to maximize the camera's viewing range while maintaining a controlled driving speed.
+• We selected a **295 mm camera height** after testing different positions.  
+• It achieved **100% success (3/3 trials)** in detecting and avoiding pillars, providing the best viewing range and detection performance. 
 
 **(ii) Platform Hardware Constraint – Sensor Coverage**
 
@@ -600,8 +600,8 @@ By changing the target angle from 90° to 91° for the first 6 loops and 90.5° 
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/2b31eb72-61c4-416e-ad4b-6e2b7fdbde56" />
 </p>
 
-• We selected **two Ultrasonic Sensors** instead of one to monitor both sides of the robot.  
-• Although this required an additional MUX and more wiring, testing showed an improvement in navigation success from 20% to 100%.
+• We chose **two Ultrasonic Sensors** to improve obstacle detection on both sides.  
+• Testing showed navigation success **increased from 20% to 100%**, despite requiring an additional MUX and wiring. 
 
 **(iii) Component Constraint – Educational Accessibility**
 
@@ -609,8 +609,8 @@ By changing the target angle from 90° to 91° for the first 6 loops and 90.5° 
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/f1f7a7f7-8259-4f04-ab8b-7e28495dba31" />
 </p>
 
-• We continued using the **LEGO Mindstorms EV3 platform** despite its large components because it is familiar and accessible for educational robotics.  
-• A custom **3D-printed chassis** was developed to overcome its space limitations.
+• We chose to retain the **LEGO Mindstorms EV3 platform** instead of switching to a fully open platform because it offers familiar, accessible, and reliable components for educational robotics.  
+• However, the **bulky EV3 components** limited our design space. We developed a **custom 3D-printed chassis** to **optimize component placement** and achieve a **more compact design**. 
 
 **(iv) Computational Constraint – Programming Performance**
 
@@ -624,8 +624,8 @@ By changing the target angle from 90° to 91° for the first 6 loops and 90.5° 
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/257f85fc-b384-401f-853f-eb5d561433cf" />
 </p>
 
-• We switched from the LEGO Mindstorms EV3 programming environment to **Clev3R** to achieve faster program execution.  
-• Testing showed that Clev3R achieved 968 sensor readings per second compared to 300, approximately 3.23 times faster, despite requiring more learning and development effort.
+• We choose **Clev3R** instead of the standard EV3 environment for faster sensor processing.  
+• Testing showed 968 readings/s compared to 300 readings/s, making Clev3R **3.23 times faster**. 
 
  ## 4.4 Iteration Cycles
 
