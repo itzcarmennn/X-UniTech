@@ -1,3 +1,7 @@
+<p align="center">
+<img width="250" alt="Logo" src="https://github.com/user-attachments/assets/ddbc6543-79a9-4c4b-b1c5-9a82a2191925" />
+</p>
+
 # X-UniTech Team, Malaysia
 
 **Welcome to X-UniTech Team Malaysia!** 
@@ -45,6 +49,8 @@ This repository presents our final robot design for the **Open Challenge** and *
   - [5.4 Testing Workflow Documented](#54-testing-workflow-documented)
   - [5.5 Versioning or Release Notes Included](#55-versioning-or-release-notes-included)
 
+- [Github Content Justification](#github-content-justification)
+
 # Summary Video
 This 6-minute video provides a brief overview of our project and its documentation. We encourage you to watch it for a quick and clear understanding of our work!  
 â–¶ **Click** to watch our robot overview!
@@ -70,7 +76,7 @@ We are X-UniTech, a team of two teacher trainees from Malaysia, made up of **Ray
 # Robot Overview
 
 <p align="center">
-<img width="600" alt="20261107_155658" src="https://github.com/user-attachments/assets/2813e15e-82a7-43a1-ac9d-37d74dccddfa" />
+<img width="500" alt="20261107_155658" src="https://github.com/user-attachments/assets/2813e15e-82a7-43a1-ac9d-37d74dccddfa" />
 </p>
 
 <table>
@@ -179,7 +185,7 @@ This combination also provides an ideal force and thrust-to-weight ratio. Hereâ€
 ## 1.3 Steering System
 
 <p align="center">
-<img width="600" alt="Steering Structure" src="https://github.com/user-attachments/assets/7d06e6bf-942e-4d2b-97ca-d499c019bd9b" />
+<img width="500" alt="Steering Structure" src="https://github.com/user-attachments/assets/7d06e6bf-942e-4d2b-97ca-d499c019bd9b" />
 </p>
 
 Our steering system combines a **LEGO Pin Crank (33299)**, which serves as the transmission component, with custom-designed 3D-printed parts. LEGO axles and connectors are used to connect the components and complete the steering mechanism.
