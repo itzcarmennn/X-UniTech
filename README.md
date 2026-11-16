@@ -624,7 +624,7 @@ By changing the target angle from 90° to 91° for the first 6 loops and 90.5° 
 <img width="700" alt="image" src="https://github.com/user-attachments/assets/257f85fc-b384-401f-853f-eb5d561433cf" />
 </p>
 
-• We choose **Clev3R** instead of the standard EV3 environment for faster sensor processing.  
+• We chose **Clev3R** instead of the standard EV3 environment for faster sensor processing.  
 • Testing showed 968 readings/s compared to 300 readings/s, making Clev3R **3.23 times faster**. 
 
  ## 4.4 Iteration Cycles
