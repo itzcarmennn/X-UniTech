@@ -6,7 +6,7 @@
 
 **Welcome to X-UniTech Team Malaysia!** 
 
-This repository presents our final robot design for the **Open Challenge** and **Obstacle Challenge**, documents its development from **Generation 1 to Generation 4** in the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/4292ab41017db0be74e6131bf3cbaa6cbdb87c5d/others/Robot%20Development%20%26%20Iteration%20Cycle.pdf), and provides detailed design information, engineering decisions, calculations, and testing results in our [**Engineering Journal**](PASTE_YOUR_ENGINEERING_JOURNAL_LINK_HERE). 
+This repository presents our final robot design for the **Open Challenge** and **Obstacle Challenge**, documents its development from **Generation 1 to Generation 4** in the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/33361fd96d14edd06532874134b76f17e3a561ff/others/Robot%20Development%20and%20Iteration%20Cycle.pdf), and provides detailed design information, engineering decisions, calculations, and testing results in our [**Engineering Journal**](https://drive.google.com/file/d/1ysNL4UfiItM1p6OHf9ZmVu5x7szyAyuZ/view?usp=sharing). 
 
 # Table of Contents
 
@@ -56,11 +56,11 @@ This 6-minute video provides a brief overview of our project and its documentati
 ▶ **Click** to watch our robot overview!
 
 <p align="center">
-  <a href="https://youtu.be/lfIao4gjNiY?si=KfRUL7o7bcm-aIM9" target="_blank">
+  <a href="https://youtu.be/a-wjOlEl2Uw?si=oZo6YYdKMlwiqRXW" target="_blank">
     <img
       width="700"
       alt="Watch Our Summary Video"
-      src="https://github.com/user-attachments/assets/b2d92536-0bd9-4c15-8e7d-a66960096aeb"
+      src="https://github.com/user-attachments/assets/1cc8f15a-5cf5-4f03-b60b-d4124cd7b199"
     />
   </a>
 </p>
@@ -832,7 +832,7 @@ The robot development and testing process was organised into five major stages, 
 
 ## 5.5 Versioning or Release Notes Included
 
-Detailed information about all four robot generations, including their designs, modifications, and development progress, is available in the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/598a1da6693f5fb5fb8dd6411f0052927905f4f6/others/Robot%20Development%20%26%20Iteration%20Cycle.pdf).
+Detailed information about all four robot generations, including their designs, modifications, and development progress, is available in the [**Robot Development & Iteration Cycle**](https://github.com/itzcarmennn/X-UniTech/blob/33361fd96d14edd06532874134b76f17e3a561ff/others/Robot%20Development%20and%20Iteration%20Cycle.pdf).
 
 # Github Content Justification
 
